@@ -15,5 +15,4 @@ for book in Books:
     i += 1
 
 def get_sample():
-    return Books[0:10]
-
+    return Books

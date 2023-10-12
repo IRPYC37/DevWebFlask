@@ -4,8 +4,8 @@ h1 {
 
 div.sample{
     text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 main{
@@ -19,11 +19,16 @@ footer{
 }
 
 main > .container {
-    padding: 60px 15px 0;
+    padding: 60px 15px 60px ;
 }
 
 div.mycard{
     margin: auto; 
     width: 18rem; 
+
+}
+img{
+    margin: 5px;
+    border-radius: 5%;
 }
 
