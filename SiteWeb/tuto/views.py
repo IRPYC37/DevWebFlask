@@ -8,7 +8,7 @@ def home():
     return render_template(
         "booksBS.html", 
         title="My Books !",
-        books=get_sample())
+        books=get_sample2())
 
 
 @app.route("/detail/<id>")
