@@ -4,7 +4,10 @@
 <div class="card border-light mb-3 mycard">
   <div class="card-header">
     {{author.name}} {% if current_user.is_authenticated %}
-    <a href="{{ url_for('edit_author', id=author.id) }}">Edit</a>
+    <a href="{{ url_for('edit_author', id=author.id) }}">
+      <button class="btn btn-outline-success">Editer</button>
+    </a>
+
     {% endif %}
   </div>
   <div class="sample">

@@ -38,12 +38,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('login') }}">Login</a>
               </li>
+              {% if current_user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('ajoute_author')}}"
                   >Ajouter un auteur</a
                 >
               </li>
-              {% if current_user.is_authenticated %}
               <span class="navbar-text"> {{ current_user.username }} </span>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>

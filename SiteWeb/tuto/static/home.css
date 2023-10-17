@@ -33,4 +33,8 @@ img{
     margin: 5px;
     border-radius: 5%;
 }
+a{
+    text-decoration: none;
+    color:black
+}
 

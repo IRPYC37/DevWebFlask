@@ -32,7 +32,7 @@ def detail(id):
 class AuthorForm(FlaskForm):
     id=HiddenField('id')
     name=StringField('Nom', validators=[DataRequired()])
-    
+      
 @app.route("/edit/author/<int:id>")
 @login_required
 def edit_author(id):
@@ -54,11 +54,29 @@ def save_author():
     return render_template(
     "edit-author.html",
     author =a, form=f)
+
+class AddAuthorForm(FlaskForm):
+    name=StringField('Nom', validators=[DataRequired()])
     
 @app.route("/ajoute-author/")
+@login_required
 def ajoute_author():
-    f=AuthorForm(id = None, name=a.name)
-    return render_template("ajoute_author.html", form=f)
+    f=AddAuthorForm(name=None)
+    return render_template("ajoute-author.html", form=f)
+
+@app.route("/save/ajout-author", methods=("POST",))
+def save_ajoute_auteur():
+    a=None
+    f=AddAuthorForm()
+    if f.validate_on_submit():
+        print("oui")
+        name=f.name.data
+        o = Author(name=name)
+        ida= o.id
+        db.session.add(o)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("ajoute-author.html",form=f)
     
 class LoginForm(FlaskForm):
     username=StringField('Username')
