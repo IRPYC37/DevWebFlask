@@ -42,4 +42,7 @@ def get_sample2():
 def get_author(id):
     return Author.query.get(id)
 
+def get_books_by_author(id):
+    ida=id
+    return Author.query.filter(Author.id==id).one().books.all()
     
