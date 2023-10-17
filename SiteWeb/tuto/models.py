@@ -1,5 +1,6 @@
 import yaml, os.path
 from .app import db
+from flask_login import UserMixin
 
 Books = yaml.safe_load(
     open(
@@ -46,3 +47,9 @@ def get_books_by_author(id):
     ida=id
     return Author.query.filter(Author.id==id).one().books.all()
     
+class User(db.Model,UserMixin):
+    username = db.Column(db.String(50), primary_key=True)
+    password = db.Column(db.String(64))
+    
+    def get_id(self):
+        return self.username
