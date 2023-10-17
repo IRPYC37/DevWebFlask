@@ -1,17 +1,25 @@
-{% extends 'baseBS.html' %}
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}"> 
-{% endblock %}
-{% block content %}
+{% extends 'baseBS.html' %} {% block styles %} {{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}" />
+{% endblock %} {% block content %}
 <div class="card border-light mb-3 mycard">
-    <div class="card-header">{{author.name}}</div>
-    <div class="sample">
-        {% for x in books %}
-        <a href="{{url_for('detail', id=x.id)}}">
-        <img src="{{ url_for('static', filename='images/'+x.img) }}" alt="{{x.title}}" title="{{x.title}}">
-        </a>
-        {% endfor %}
-    </div>
+  <div class="card-header">
+    {{author.name}} {% if current_user.is_authenticated %}
+    <a href="{{ url_for('edit_author', id=author.id) }}">
+      <button class="btn btn-outline-success">Editer</button>
+    </a>
+
+    {% endif %}
+  </div>
+  <div class="sample">
+    {% for x in books %}
+    <a href="{{url_for('detail', id=x.id)}}">
+      <img
+        src="{{ url_for('static', filename='images/'+x.img) }}"
+        alt="{{x.title}}"
+        title="{{x.title}}"
+      />
+    </a>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

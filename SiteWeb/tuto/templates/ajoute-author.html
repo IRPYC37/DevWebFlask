@@ -1,8 +1,8 @@
 {% extends "baseBS.html" %}
 {% block content %}
-<h1 >Edit author : {{ author.name }}</h1 >
-<h1 >Changer le nom de cet auteur : {{ author.name }}</h1 >
-<form role="form" method="POST" action ="{{ url_for ('save_author') }}">
+<h1 >Add Author :</h1 >
+<h1>Ajouter un auteur :</h1 >
+<form role="form" method="POST" action ="{{ url_for ('save_ajoute_auteur') }}">
   {{ form.hidden_tag() }}
 
   <div class=
