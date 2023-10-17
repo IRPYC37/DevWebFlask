@@ -1,5 +1,7 @@
 h1 {
-    color: red;
+    color: black;
+    text-align: center;
+    margin:20px;
 }
 
 div.sample{
