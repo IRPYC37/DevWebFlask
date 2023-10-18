@@ -111,3 +111,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("home"))
+
+@app.route("/edit/AjoutLivre/")
+@login_required
+def ajout_livre():
+    return render_template("ajout_livre.html")

@@ -43,11 +43,17 @@
                 <a class="nav-link" href="{{ url_for('ajoute_author')}}"
                   >| Ajouter un auteur |
                 </a>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('ajout_livre')}}"
+                    > Ajouter un livre | 
+                  </a>
+                </li>
               </li>
               <span class="navbar-text"> {{ current_user.username }} </span>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}"> | Logout</a>
               </li>
+              
               {% endif %}
             </ul>
             <form class="d-flex" role="search">
