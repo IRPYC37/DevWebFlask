@@ -29,6 +29,7 @@ def loaddb(filename):
             url = b["url"] ,
             img = b["img"] ,
             author_id = a.id)
+        
         db.session.add(o)
     db.session.commit ()
     

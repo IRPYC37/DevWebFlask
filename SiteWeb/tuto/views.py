@@ -1,8 +1,8 @@
 from .app import app, db
 from flask import render_template, url_for, redirect, request
-from .models import get_sample2, get_author, Author, get_books_by_author, User
+from .models import get_sample2, get_author, Author, get_books_by_author, User , Book
 from flask_wtf import FlaskForm
-from wtforms import StringField , HiddenField, PasswordField
+from wtforms import StringField , HiddenField, PasswordField, FloatField
 from wtforms.validators import DataRequired
 from hashlib import sha256
 from flask_login import login_user, current_user, logout_user, login_required
@@ -66,17 +66,18 @@ def ajoute_author():
 
 @app.route("/save/ajout-author", methods=("POST",))
 def save_ajoute_auteur():
-    a=None
     f=AddAuthorForm()
     if f.validate_on_submit():
         print("oui")
         name=f.name.data
         o = Author(name=name)
-        ida= o.id
         db.session.add(o)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("ajoute-author.html",form=f)
+
+
+
     
 class LoginForm(FlaskForm):
     username=StringField('Username')
@@ -116,3 +117,31 @@ def logout():
 @login_required
 def ajout_livre():
     return render_template("ajout_livre.html")
+
+class AddBookForm(FlaskForm):
+    title=StringField('Titre', validators=[DataRequired()])
+    author=StringField('Auteur', validators=[DataRequired()])
+    img=StringField("Lien vers l'image", validators=[DataRequired()])
+    prix=FloatField('Prix', validators=[DataRequired()])
+    url=StringField('URL', validators=[DataRequired()])
+
+@app.route("/save/ajout_livre", methods=("POST",))
+def save_ajoute_auteur():
+    a=None
+    f=AddBookForm()
+    if f.validate_on_submit():
+        print("oui")
+        
+        title=f.title.data
+        author=f.author.data
+        img=f.img.data
+        prix=f.prix.data
+        url=f.url.data
+        
+        b = Book(title=title,author=author,img=img,prix=prix,url=url)
+        
+        db.session.add(b)
+        db.session.commit()
+        
+        return redirect(url_for("home"))
+    return render_template("ajoute-author.html",form=f)
